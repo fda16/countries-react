@@ -1,0 +1,21 @@
+@import '../../../style/variables.scss';
+
+.country {
+    display: flex;
+
+    padding: 10px;
+
+    cursor: pointer;
+
+    &__wrapper {
+        &:nth-child(odd) {
+            background:cornsilk;
+        }
+    }
+
+    &__column {
+        flex: 100px 1 1;
+        text-align: center;
+    }
+}
+

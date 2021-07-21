@@ -1,0 +1,26 @@
+@import '../../../style/variables.scss';
+
+.countries {
+    width: 100%;
+    max-width: $container-width;
+
+    margin: 50px auto;
+
+    border: 1px solid $main-color;
+
+    &__header {
+        display: flex;
+
+        padding: 10px;
+
+        background: $main-color;
+        color: white;
+
+        cursor: pointer;
+    }
+
+    &__column {
+        flex: 100px 1 1;
+        text-align: center;
+    }
+}

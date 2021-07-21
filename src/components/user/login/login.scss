@@ -1,0 +1,26 @@
+@import '../../../style/mixins.scss';
+@import '../../../style/variables.scss';
+
+
+.login {
+    padding: 5px;
+
+    width: 100%;
+    max-width: 500px;
+
+    &__fieldset {
+        @include fieldset;
+    }
+
+    &__label {
+        @include label;
+    }
+
+    &__input {
+        @include input;
+    }
+
+    &__button {
+        @include submit-button;
+    }
+}
