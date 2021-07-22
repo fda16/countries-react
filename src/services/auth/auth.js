@@ -92,8 +92,6 @@ export async function refreshToken() {
         return response;
     }
     catch(error) {
-        console.log(error);
-
-        return 0;
+        return false;
     }
 }
