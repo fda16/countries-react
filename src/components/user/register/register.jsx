@@ -19,6 +19,7 @@ export default class Register extends React.Component {
                 email: '',
             },
             loggedIn: false,
+            error: '',
         }
 
         this.handleChange = this.handleChange.bind(this);
@@ -37,8 +38,12 @@ export default class Register extends React.Component {
     async submit(e) {
         e.preventDefault();
         
-        if (await register(this.state.userData))
+        const response = await register(this.state.userData);
+
+        if (response.status === 200)
             this.setState({ loggedIn: true });
+        else
+            this.setState({ error: response.data.Detail });
     }
 
     render() {
@@ -142,6 +147,7 @@ export default class Register extends React.Component {
                         type="submit"
                         className="register__button">Зарегистрироваться</button>
 
+                    {this.state.error && <div>{this.state.erorr}</div>}
                 </fieldset>
 
                 {this.state.loggedIn && <Redirect to='/' />}

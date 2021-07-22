@@ -1,5 +1,5 @@
 import {refreshToken, logout} from '../auth/auth.js'
-import axios from 'axios'
+import axios from '../../axios-config.js'
 
 export async function getCountriesFromApi() {
     const user = JSON.parse(localStorage.getItem('user'));
@@ -9,7 +9,7 @@ export async function getCountriesFromApi() {
     try {
         const response = await axios({
             method: 'get',
-            url: 'https://api.bo.aa44.ru/api/Countries',
+            url: '/Countries',
             headers: {'Authorization': 'Bearer ' + user.accessToken}
         });
     

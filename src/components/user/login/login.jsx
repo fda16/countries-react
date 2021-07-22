@@ -11,6 +11,7 @@ export default class Login extends React.Component {
             userName: '',
             password: '',
             loggedIn: false,
+            error: '',
         }
 
         this.handleChange = this.handleChange.bind(this);
@@ -26,8 +27,12 @@ export default class Login extends React.Component {
     async submit(e) {
         e.preventDefault();
         
-        if (await login(this.state.userName, this.state.password))
+        const response = await login(this.state.userName, this.state.password);
+
+        if (response.status === 200)
             this.setState({ loggedIn: true });
+        else 
+            this.setState({ error: response.data.Detail })
     }
 
     render() {
@@ -64,6 +69,8 @@ export default class Login extends React.Component {
                 <button 
                     type="submit"
                     className="login__button">Войти</button>
+
+                {this.state.error && <div>{this.state.error}</div>}
             </fieldset>
 
             {this.state.loggedIn && <Redirect to='/' />}

@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios from '../../axios-config.js'
 
 function saveTokens(accessToken, refreshToken, expires) {
     localStorage.setItem('user', JSON.stringify({
@@ -12,7 +12,7 @@ export async function register(userData) {
     try {
         const response = await axios({
             method: 'post',
-            url: 'https://api.bo.aa44.ru/api/Auth/register',
+            url: '/Auth/register',
             data: {
                 lastName: userData.lastName,
                 firstName: userData.firstName,
@@ -30,9 +30,7 @@ export async function register(userData) {
         return response;
     }
     catch(error) {
-        console.log(error);
-
-        return 0;
+        return error.response;
     }
 }
 
@@ -40,7 +38,7 @@ export async function login(userName, password) {
     try {
         const response = await axios({
             method: 'post',
-            url: 'https://api.bo.aa44.ru/api/Auth/login',
+            url: '/Auth/login',
             data: {
                 userName: userName,
                 password: password
@@ -52,9 +50,7 @@ export async function login(userName, password) {
         return response;
     }
     catch(error) {
-        console.log(error);
-
-        return 0;
+        return error.response;
     }
 }
 
@@ -83,7 +79,7 @@ export function logout() {
 
 export async function refreshToken() {
     const token = JSON.parse(localStorage.getItem('user')).refreshToken;
-    const url = 'https://api.bo.aa44.ru/api/Auth/tokens/' + token + '/refresh';
+    const url = '/Auth/tokens/' + token + '/refresh';
 
     try {
         const response = await axios({
